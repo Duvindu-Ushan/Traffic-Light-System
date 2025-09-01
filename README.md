@@ -14,7 +14,6 @@ The controller runs **24/7 without human intervention** and splits the junction 
 - **Pedestrian signals:** Red / Green
 - **Start/Stop** for emergency control and safe recovery
 - **Mutual-exclusion interlocks** prevent conflicting greens
-- Deterministic startup and safe all-red fail state
 - Designed for **continuous 24/7 operation**
 - **Future-ready** for sensors and monitoring (CCTV, inductive loops, axle/weight sensors, etc.)
 
@@ -50,45 +49,6 @@ At any moment:
 
 ---
 
-## 🧩 Suggested I/O Mapping (adjust to your wiring)
-
-> Replace with your actual addresses if different.
-
-**Inputs**
-- `X0` — **START** (momentary or maintained)
-- `X1` — **STOP** *(prefer NC in field for fail-safe)*
-
-**Outputs — Vehicles**
-- `Y0` — **NS Red**
-- `Y1` — **NS Yellow**
-- `Y2` — **NS Green**
-- `Y3` — **WE Red**
-- `Y4` — **WE Yellow**
-- `Y5` — **WE Green**
-
-**Outputs — Pedestrians**
-- `Y6`  — **NS Ped Red**
-- `Y7`  — **NS Ped Green**
-- `Y10` — **WE Ped Red**
-- `Y11` — **WE Ped Green**
-
----
-
-## 🛠 How to Run
-
-1. **Open the project** in **WinProLadder**  
-   *File → Open →* `TrafficLight1.pdw`
-
-2. **Simulate** (recommended first)  
-   - Use the built-in simulator  
-   - Toggle `X0` (START) to begin, `X1` (STOP) to halt (forces all-red)
-
-3. **Deploy to PLC (optional)**  
-   - Connect to your FATEK PLC → set COM parameters → **Download**  
-   - Verify I/O mapping and lamp wiring before going live
-
----
-
 ## 🔒 Safety & Interlocks
 
 - NS and WE **greens are never on together** (hard interlocks)  
@@ -97,8 +57,6 @@ At any moment:
   - Resets timers  
   - Forces **all-red** for vehicles and pedestrians  
   - Returns to a deterministic initial phase on **START**
-
-*(Optionally add a 1–2 s all-red clearance timer between phases if your field hardware requires it.)*
 
 ---
 
