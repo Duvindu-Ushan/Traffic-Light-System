@@ -49,3 +49,83 @@ At any moment:
 - **WE Green/Yellow ⇒ NS Red** (vehicles & pedestrians)
 
 ---
+
+## 🧩 Suggested I/O Mapping (adjust to your wiring)
+
+> Replace with your actual addresses if different.
+
+**Inputs**
+- `X0` — **START** (momentary or maintained)
+- `X1` — **STOP** *(prefer NC in field for fail-safe)*
+
+**Outputs — Vehicles**
+- `Y0` — **NS Red**
+- `Y1` — **NS Yellow**
+- `Y2` — **NS Green**
+- `Y3` — **WE Red**
+- `Y4` — **WE Yellow**
+- `Y5` — **WE Green**
+
+**Outputs — Pedestrians**
+- `Y6`  — **NS Ped Red**
+- `Y7`  — **NS Ped Green**
+- `Y10` — **WE Ped Red**
+- `Y11` — **WE Ped Green**
+
+---
+
+## 🛠 How to Run
+
+1. **Open the project** in **WinProLadder**  
+   *File → Open →* `TrafficLight1.pdw`
+
+2. **Simulate** (recommended first)  
+   - Use the built-in simulator  
+   - Toggle `X0` (START) to begin, `X1` (STOP) to halt (forces all-red)
+
+3. **Deploy to PLC (optional)**  
+   - Connect to your FATEK PLC → set COM parameters → **Download**  
+   - Verify I/O mapping and lamp wiring before going live
+
+---
+
+## 🔒 Safety & Interlocks
+
+- NS and WE **greens are never on together** (hard interlocks)  
+- Pedestrian greens are **only parallel** to the active vehicle direction  
+- **STOP** immediately:
+  - Resets timers  
+  - Forces **all-red** for vehicles and pedestrians  
+  - Returns to a deterministic initial phase on **START**
+
+*(Optionally add a 1–2 s all-red clearance timer between phases if your field hardware requires it.)*
+
+---
+
+## 🧱 Implementation Notes
+
+- Timers (`TMR`) set: **15 s** (vehicle green), **3 s** (vehicle yellow) → **18 s** phase
+- Phase coils (e.g., `M_NS_RUN`, `M_WE_RUN`) gate both vehicle and pedestrian outputs
+- One-shot on **START** ensures clean initialization
+- Simple two-state controller (NS ↔ WE) for clarity and maintainability
+
+---
+
+## 🔧 Customization
+
+- **Change durations:** update preset values of phase timers (15 s / 3 s)
+- **Initial phase:** switch startup coil from NS to WE if desired
+- **Add clearance:** insert an all-red timer between phases
+- **Extend logic:** add call/confirm pushbuttons, audible ped beeper, flashing intervals, countdowns
+
+---
+
+## 📈 Roadmap (Future Development)
+
+- **CCTV integration** for remote monitoring
+- **Inductive loop detectors** for demand-based phase extension
+- **Axle/weight sensors** for heavy-vehicle priority
+- **Lamp fault detection** (burn-out sensing) and watchdogs
+- **Communication** (SCADA/Modbus/TCP) and event logging
+
+---
