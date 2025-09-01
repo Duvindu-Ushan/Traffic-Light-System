@@ -55,7 +55,6 @@ At any moment:
 - Pedestrian greens are **only parallel** to the active vehicle direction  
 - **STOP** immediately:
   - Resets timers  
-  - Forces **all-red** for vehicles and pedestrians  
   - Returns to a deterministic initial phase on **START**
 
 ---
@@ -63,7 +62,6 @@ At any moment:
 ## 🧱 Implementation Notes
 
 - Timers (`TMR`) set: **15 s** (vehicle green), **3 s** (vehicle yellow) → **18 s** phase
-- Phase coils (e.g., `M_NS_RUN`, `M_WE_RUN`) gate both vehicle and pedestrian outputs
 - One-shot on **START** ensures clean initialization
 - Simple two-state controller (NS ↔ WE) for clarity and maintainability
 
