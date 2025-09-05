@@ -1,4 +1,4 @@
-# 4-Way Traffic Light Controller — FATEK PLC (WinProLadder)
+# 4-Way Traffic Light Controller — PLC Programming 
 
 A ladder-logic implementation of a **4-way signalized intersection** built with **WinProLadder** for the **FATEK PLC series**.  
 The controller runs **24/7 without human intervention** and splits the junction into two coordinated approaches: **North–South (NS)** and **West–East (WE)**. Vehicles travel **straight only** (no left/right turns). **Pedestrians** cross **in parallel** with the active vehicle direction. An **Emergency Start/Stop** is provided.
