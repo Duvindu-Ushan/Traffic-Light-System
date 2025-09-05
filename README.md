@@ -3,6 +3,8 @@
 A ladder-logic implementation of a **4-way signalized intersection** built with **WinProLadder** for the **FATEK PLC series**.  
 The controller runs **24/7 without human intervention** and splits the junction into two coordinated approaches: **North–South (NS)** and **West–East (WE)**. Vehicles travel **straight only** (no left/right turns). **Pedestrians** cross **in parallel** with the active vehicle direction. An **Emergency Start/Stop** is provided.
 
+![image alt](https://github.com/Duvindu-Ushan/Traffic-Light-System/blob/b07b1513acf077a792e50dda34f5e501d215c412/sensors-20-00137-g002.png)
+
 > Project file: `TrafficLight1.pdw` (WinProLadder)
 
 ---
